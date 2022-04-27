@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import br.univates.appunivates.tools.Globais;
+
 public class DadosOpenHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1; //versão do banco de dados
@@ -29,7 +31,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
             db.execSQL(sql.toString());
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
+            Globais.exibirMensagem(context, ex.getMessage());
         }
     }
 

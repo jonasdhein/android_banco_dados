@@ -3,6 +3,7 @@ package br.univates.appunivates.controller;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import br.univates.appunivates.database.DadosOpenHelper;
 import br.univates.appunivates.database.Tabelas;
 import br.univates.appunivates.model.Linguagem;
+import br.univates.appunivates.tools.Globais;
 
 public class LinguagemController {
 
@@ -24,9 +26,9 @@ public class LinguagemController {
     }
 
     public Linguagem buscar(int id){
-        try{
+        Linguagem objeto = null;
 
-            Linguagem objeto = null;
+        try{
 
             StringBuilder sql = new StringBuilder();
             sql.append("SELECT * FROM ");
@@ -45,8 +47,8 @@ public class LinguagemController {
             return objeto;
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
-            return null;
+            Globais.exibirMensagem(context, ex.getMessage());
+            return objeto;
         }
     }
 
@@ -57,12 +59,13 @@ public class LinguagemController {
             valores.put("nome", objeto.getNome());
             valores.put("descricao", objeto.getDescricao());
 
-            conexao.insertOrThrow(Tabelas.TB_LINGUAGENS, null, valores);
+            conexao.insertOrThrow(Tabelas.TB_LINGUAGENS, null,
+                    valores);
 
             return true;
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
+            Globais.exibirMensagem(context, ex.getMessage());
             return false;
         }
     }
@@ -82,7 +85,7 @@ public class LinguagemController {
             return true;
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
+            Globais.exibirMensagem(context, ex.getMessage());
             return false;
         }
     }
@@ -98,7 +101,7 @@ public class LinguagemController {
             return true;
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
+            Globais.exibirMensagem(context, ex.getMessage());
             return false;
         }
     }
@@ -133,7 +136,7 @@ public class LinguagemController {
             return listagem;
 
         }catch (Exception ex){
-            //Globais.exibirMensagem(context, ex.getMessage());
+            Globais.exibirMensagem(context, ex.getMessage());
             return listagem;
         }
     }

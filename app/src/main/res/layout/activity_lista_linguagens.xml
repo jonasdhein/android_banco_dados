@@ -6,29 +6,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".MainActivity">
-
-    <EditText
-        android:id="@+id/txtNome_linguagem"
-        android:hint="nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/txtDescricao_linguagem"
-        android:hint="descricao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    tools:context=".ListaLinguagensActivity">
 
     <Button
-        android:id="@+id/btnSalvar_linguagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Nova" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SALVAR"/>
+        android:gravity="center_horizontal"
+        android:text="Lista de Linguagens" />
 
     <ListView
         android:id="@+id/ltvLista_linguagem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
