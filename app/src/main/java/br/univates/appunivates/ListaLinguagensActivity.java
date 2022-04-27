@@ -3,6 +3,7 @@ package br.univates.appunivates;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import br.univates.appunivates.tools.Globais;
 
 public class ListaLinguagensActivity extends AppCompatActivity {
 
+    Button btnNova;
     ListView ltvLista;
     ArrayList<Linguagem> listagem;
     LinguagemAdapter adapter;
@@ -31,7 +33,16 @@ public class ListaLinguagensActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_linguagens);
         context = ListaLinguagensActivity.this;
 
+        btnNova = findViewById(R.id.btnAddLinguagem_linguagens);
         ltvLista = findViewById(R.id.ltvLista_linguagem);
+
+        btnNova.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, LinguagensActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

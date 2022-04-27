@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.univates.appunivates.LinguagensActivity;
 import br.univates.appunivates.R;
 import br.univates.appunivates.model.Linguagem;
 
@@ -46,9 +47,9 @@ public class LinguagemAdapter extends ArrayAdapter<Linguagem> {
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Intent tela = new Intent(context, NOVATELAAQUI_Activity.class);
-                    //tela.putExtra("id", objeto.getId());
-                    //context.startActivity(tela);
+                    Intent tela = new Intent(context, LinguagensActivity.class);
+                    tela.putExtra("id", objeto.getId());
+                    context.startActivity(tela);
                 }
             });
 

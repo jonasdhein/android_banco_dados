@@ -22,6 +22,7 @@ public class LinguagensActivity extends AppCompatActivity {
     Linguagem objeto;
     LinguagemController controller;
     Context context;
+    int id_linguagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,21 @@ public class LinguagensActivity extends AppCompatActivity {
         txtDescricao = findViewById(R.id.txtDescricao_linguagem);
         context = LinguagensActivity.this;
 
+        //Verificar se veio algum EXTRA da tela anterior
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            id_linguagem = extras.getInt("id", 0);
+            //buscar através desta chave
+            controller = new LinguagemController(context);
+            objeto = controller.buscar(id_linguagem);
+            if(objeto != null){
+                txtNome.setText(objeto.getNome());
+                txtDescricao.setText(objeto.getDescricao());
+            }
+
+        }else{
+            id_linguagem = 0;
+        }
     }
 
     //Funcao para inflar o menu na tela
@@ -83,8 +99,15 @@ public class LinguagensActivity extends AppCompatActivity {
 
                 controller = new LinguagemController(context);
 
-                boolean retorno = controller.incluir(objeto);
-                if(retorno){
+                boolean retorno = false;
+                if(id_linguagem == 0){
+                    retorno = controller.incluir(objeto);
+                }else{
+                    objeto.setId(id_linguagem);
+                    retorno = controller.alterar(objeto);
+                }
+
+                if(retorno) {
                     Globais.exibirMensagem(context, "Sucesso");
                     finish();
                 }
