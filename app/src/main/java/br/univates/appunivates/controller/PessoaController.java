@@ -3,47 +3,46 @@ package br.univates.appunivates.controller;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
 import br.univates.appunivates.database.DadosOpenHelper;
 import br.univates.appunivates.database.Tabelas;
 import br.univates.appunivates.model.Linguagem;
+import br.univates.appunivates.model.Pessoa;
 import br.univates.appunivates.tools.Globais;
 
-public class LinguagemController {
+public class PessoaController {
 
     private SQLiteDatabase conexao;
     private Context context;
 
-    public LinguagemController(Context context){
+    public PessoaController(Context context){
         DadosOpenHelper banco = new DadosOpenHelper(context);
         this.conexao = banco.getWritableDatabase();
         this.context = context;
     }
 
-    public Linguagem buscar(int id){
-        Linguagem objeto = null;
+    public Pessoa buscar(int id){
+        Pessoa objeto = null;
 
         try{
 
             StringBuilder sql = new StringBuilder();
             sql.append("SELECT * FROM ");
-            sql.append(Tabelas.TB_LINGUAGENS);
+            sql.append(Tabelas.TB_PESSOAS);
             sql.append(" WHERE id = '"+ id +"'");
 
             Cursor resultado = conexao.rawQuery(sql.toString(), null);
             if(resultado.moveToNext()){
-                objeto = new Linguagem();
+                objeto = new Pessoa();
 
                 objeto.setId(resultado.getInt(resultado.getColumnIndexOrThrow("id")));
                 objeto.setNome(resultado.getString(resultado.getColumnIndexOrThrow("nome")));
-                objeto.setDescricao(resultado.getString(resultado.getColumnIndexOrThrow("descricao")));
-                objeto.setFavorito(resultado.getInt(resultado.getColumnIndexOrThrow("favorito")));
-                objeto.setNota(resultado.getInt(resultado.getColumnIndexOrThrow("nota")));
+                objeto.setTelefone(resultado.getString(resultado.getColumnIndexOrThrow("telefone")));
+                objeto.setData_nascimento(resultado.getString(resultado.getColumnIndexOrThrow("data_nascimento")));
+                objeto.setCpf(resultado.getString(resultado.getColumnIndexOrThrow("cpf")));
             }
 
             return objeto;
@@ -54,16 +53,16 @@ public class LinguagemController {
         }
     }
 
-    public boolean incluir(Linguagem objeto){
+    public boolean incluir(Pessoa objeto){
         try{
 
             ContentValues valores = new ContentValues();
             valores.put("nome", objeto.getNome());
-            valores.put("descricao", objeto.getDescricao());
-            valores.put("favorito", objeto.getFavorito());
-            valores.put("nota", objeto.getNota());
+            valores.put("telefone", objeto.getTelefone());
+            valores.put("data_nascimento", objeto.getData_nascimento());
+            valores.put("cpf", objeto.getCpf());
 
-            conexao.insertOrThrow(Tabelas.TB_LINGUAGENS, null,
+            conexao.insertOrThrow(Tabelas.TB_PESSOAS, null,
                     valores);
 
             return true;
@@ -74,19 +73,19 @@ public class LinguagemController {
         }
     }
 
-    public boolean alterar(Linguagem objeto){
+    public boolean alterar(Pessoa objeto){
         try{
 
             ContentValues valores = new ContentValues();
             valores.put("nome", objeto.getNome());
-            valores.put("descricao", objeto.getDescricao());
-            valores.put("favorito", objeto.getFavorito());
-            valores.put("nota", objeto.getNota());
+            valores.put("telefone", objeto.getTelefone());
+            valores.put("data_nascimento", objeto.getData_nascimento());
+            valores.put("cpf", objeto.getCpf());
 
             String[] parametros = new String[1];
             parametros[0] = String.valueOf(objeto.getId());
 
-            conexao.update(Tabelas.TB_LINGUAGENS, valores, "id = ?" , parametros);
+            conexao.update(Tabelas.TB_PESSOAS, valores, "id = ?" , parametros);
 
             return true;
 
@@ -102,7 +101,7 @@ public class LinguagemController {
             String[] parametros = new String[1];
             parametros[0] = String.valueOf(id);
 
-            conexao.delete(Tabelas.TB_LINGUAGENS, "id = ?", parametros);
+            conexao.delete(Tabelas.TB_PESSOAS, "id = ?", parametros);
 
             return true;
 
@@ -112,28 +111,28 @@ public class LinguagemController {
         }
     }
 
-    public ArrayList<Linguagem> lista(){
+    public ArrayList<Pessoa> lista(){
 
-        ArrayList<Linguagem> listagem = new ArrayList<>();
+        ArrayList<Pessoa> listagem = new ArrayList<>();
         try{
 
             StringBuilder sql = new StringBuilder();
             sql.append(" SELECT * FROM ");
-            sql.append(Tabelas.TB_LINGUAGENS);
+            sql.append(Tabelas.TB_PESSOAS);
             sql.append(" ORDER BY nome ");
 
             Cursor resultado = conexao.rawQuery(sql.toString(), null);
             if(resultado.moveToFirst()){
 
-                Linguagem objeto;
+                Pessoa objeto;
                 do{
-                    objeto = new Linguagem();
+                    objeto = new Pessoa();
 
                     objeto.setId(resultado.getInt(resultado.getColumnIndexOrThrow("id")));
                     objeto.setNome(resultado.getString(resultado.getColumnIndexOrThrow("nome")));
-                    objeto.setDescricao(resultado.getString(resultado.getColumnIndexOrThrow("descricao")));
-                    objeto.setFavorito(resultado.getInt(resultado.getColumnIndexOrThrow("favorito")));
-                    objeto.setNota(resultado.getInt(resultado.getColumnIndexOrThrow("nota")));
+                    objeto.setTelefone(resultado.getString(resultado.getColumnIndexOrThrow("telefone")));
+                    objeto.setData_nascimento(resultado.getString(resultado.getColumnIndexOrThrow("data_nascimento")));
+                    objeto.setCpf(resultado.getString(resultado.getColumnIndexOrThrow("cpf")));
 
                     listagem.add(objeto);
 

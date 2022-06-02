@@ -40,9 +40,15 @@ public class LinguagemAdapter extends ArrayAdapter<Linguagem> {
 
             TextView nome = rowView.findViewById(R.id.lblNome_item_linguagem);
             TextView descricao = rowView.findViewById(R.id.lblDescricao_item_linguagem);
+            ImageView favorito = rowView.findViewById(R.id.imgFavorito_linguagem);
 
             nome.setText(objeto.getNome());
             descricao.setText(objeto.getDescricao());
+            if(objeto.getFavorito() == 1){
+                favorito.setVisibility(View.VISIBLE);
+            }else{
+                favorito.setVisibility(View.GONE);
+            }
 
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
