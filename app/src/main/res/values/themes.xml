@@ -29,8 +29,9 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="Botao" parent="Widget.AppCompat.Button">
+    <style name="Botao" parent="ThemeOverlay.AppCompat">
         <item name="fontFamily">@font/raleway_bold</item>
         <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@color/teal_200</item>
     </style>
 </resources>

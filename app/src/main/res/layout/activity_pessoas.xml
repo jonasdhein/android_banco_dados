@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PessoasActivity">
+
+    <EditText
+        android:id="@+id/txtNome_pessoa"
+        android:hint="nome"
+        style="@style/TextoRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/txtTelefone_pessoa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="telefone"
+        style="@style/TextoRegular"
+        app:mask="(__) _____-____"
+        app:maskCharacter="_"
+        app:maskStyle="normal" />
+
+    <EditText
+        android:id="@+id/txtDataNasc_pessoa"
+        android:hint="data de nascimento"
+        style="@style/TextoRegular"
+        android:editable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.santalu.maskara.widget.MaskEditText
+        android:id="@+id/txtCpf_pessoa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="cpf"
+        style="@style/TextoRegular"
+        app:mask="___.___.___-__"
+        app:maskCharacter="_"
+        app:maskStyle="normal" />
+
+    <Spinner
+        android:id="@+id/spiLinguagem_pessoa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnExcluir_pessoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        style="@style/Botao"
+        android:text="Excluir" />
+
+</LinearLayout>

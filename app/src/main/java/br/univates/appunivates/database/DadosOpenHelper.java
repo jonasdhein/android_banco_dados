@@ -10,7 +10,7 @@ import br.univates.appunivates.tools.Globais;
 
 public class DadosOpenHelper extends SQLiteOpenHelper {
 
-    private static final int VERSION = 7; //versão do banco de dados
+    private static final int VERSION = 8; //versão do banco de dados
     private static final String NM_BANCO = "banco";
     private Context context;
 
@@ -27,6 +27,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
             sql.append(Tabelas.TB_LINGUAGENS);
             sql.append(" ( ");
             sql.append(" id INTEGER PRIMARY KEY AUTOINCREMENT, ");
+            sql.append(" id_categoria INTEGER, ");
             sql.append(" nome VARCHAR(30) NOT NULL, ");
             sql.append(" descricao TEXT, ");
             sql.append(" favorito BIT, ");
@@ -42,6 +43,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
             sql.append(" nome VARCHAR(30) NOT NULL, ");
             sql.append(" telefone VARCHAR(15), ");
             sql.append(" data_nascimento DATE, ");
+            sql.append(" id_linguagem INTEGER, ");
             sql.append(" cpf VARCHAR(11) ");
             sql.append(" ) ");
             db.execSQL(sql.toString());
@@ -122,6 +124,17 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
                     sql.append(Tabelas.TB_PESSOAS);
                     sql.append(" ADD COLUMN ");
                     sql.append(" cpf VARCHAR(11) ");
+                    db.execSQL(sql.toString());
+                }catch (Exception ex){
+                    Log.e("ALTER_TABLE", ex.getMessage());
+                }
+
+                try {
+                    sql = new StringBuilder();
+                    sql.append(" ALTER TABLE ");
+                    sql.append(Tabelas.TB_PESSOAS);
+                    sql.append(" ADD COLUMN ");
+                    sql.append(" id_linguagem INTEGER ");
                     db.execSQL(sql.toString());
                 }catch (Exception ex){
                     Log.e("ALTER_TABLE", ex.getMessage());

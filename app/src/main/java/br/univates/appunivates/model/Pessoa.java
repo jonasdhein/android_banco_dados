@@ -7,6 +7,7 @@ public class Pessoa {
     private String telefone;
     private String data_nascimento;
     private String cpf;
+    private int id_linguagem;
 
     //ATL + INSERT
     public int getId() {
@@ -47,6 +48,14 @@ public class Pessoa {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public int getId_linguagem() {
+        return id_linguagem;
+    }
+
+    public void setId_linguagem(int id_linguagem) {
+        this.id_linguagem = id_linguagem;
     }
 
     @Override

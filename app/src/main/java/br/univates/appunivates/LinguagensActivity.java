@@ -18,8 +18,10 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 import br.univates.appunivates.controller.LinguagemController;
+import br.univates.appunivates.controller.PessoaController;
 import br.univates.appunivates.model.Linguagem;
 import br.univates.appunivates.model.Nota;
+import br.univates.appunivates.model.Pessoa;
 import br.univates.appunivates.tools.Globais;
 
 public class LinguagensActivity extends AppCompatActivity {
@@ -60,16 +62,13 @@ public class LinguagensActivity extends AppCompatActivity {
 
         context = LinguagensActivity.this;
 
-        ArrayList<Nota> lista_notas = new ArrayList<>();
-        lista_notas.add(new Nota(0, "Selecione..."));
-        lista_notas.add(new Nota(1, "Nota 1"));
-        lista_notas.add(new Nota(2, "Nota 2"));
-        lista_notas.add(new Nota(3, "Nota 3"));
-        lista_notas.add(new Nota(4, "Nota 4"));
-        lista_notas.add(new Nota(5, "Nota 5"));
+        ArrayList<Nota> lista = new ArrayList<>();
+        lista.add(new Nota(1, "Nota 1"));
+        lista.add(new Nota(2, "Nota 2"));
+        lista.add(new Nota(3, "Nota 3"));
 
         ArrayAdapter<Nota> adapter_notas = new ArrayAdapter<>(context,
-                android.R.layout.simple_list_item_1, lista_notas);
+                android.R.layout.simple_list_item_1, lista);
 
         spiNota.setAdapter(adapter_notas);
 

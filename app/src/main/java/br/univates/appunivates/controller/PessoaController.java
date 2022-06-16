@@ -43,6 +43,7 @@ public class PessoaController {
                 objeto.setTelefone(resultado.getString(resultado.getColumnIndexOrThrow("telefone")));
                 objeto.setData_nascimento(resultado.getString(resultado.getColumnIndexOrThrow("data_nascimento")));
                 objeto.setCpf(resultado.getString(resultado.getColumnIndexOrThrow("cpf")));
+                objeto.setId_linguagem(resultado.getInt(resultado.getColumnIndexOrThrow("id_linguagem")));
             }
 
             return objeto;
@@ -61,6 +62,7 @@ public class PessoaController {
             valores.put("telefone", objeto.getTelefone());
             valores.put("data_nascimento", objeto.getData_nascimento());
             valores.put("cpf", objeto.getCpf());
+            valores.put("id_linguagem", objeto.getId_linguagem());
 
             conexao.insertOrThrow(Tabelas.TB_PESSOAS, null,
                     valores);
@@ -81,6 +83,7 @@ public class PessoaController {
             valores.put("telefone", objeto.getTelefone());
             valores.put("data_nascimento", objeto.getData_nascimento());
             valores.put("cpf", objeto.getCpf());
+            valores.put("id_linguagem", objeto.getId_linguagem());
 
             String[] parametros = new String[1];
             parametros[0] = String.valueOf(objeto.getId());
@@ -133,6 +136,7 @@ public class PessoaController {
                     objeto.setTelefone(resultado.getString(resultado.getColumnIndexOrThrow("telefone")));
                     objeto.setData_nascimento(resultado.getString(resultado.getColumnIndexOrThrow("data_nascimento")));
                     objeto.setCpf(resultado.getString(resultado.getColumnIndexOrThrow("cpf")));
+                    objeto.setId_linguagem(resultado.getInt(resultado.getColumnIndexOrThrow("id_linguagem")));
 
                     listagem.add(objeto);
 
